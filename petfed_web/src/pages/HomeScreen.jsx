@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NameEdit from '../components/NameEdit';
+import { FaPlus } from "react-icons/fa6";
+
 
 function HomeScreen() {
     const [name, setName] = useState('');
@@ -12,9 +14,9 @@ function HomeScreen() {
         <NameEdit></NameEdit>
         <Link
           to="/add-new-pet"
-          className="inline-block mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className="flex justify-center items-center mt-4 h-24 w-24 py-3 bg-white text-slate-500 rounded-full border-solid border-4 border-slate-500"
         >
-          Add New Pet
+          <FaPlus size={50}/>
         </Link>
       </div>
     );
