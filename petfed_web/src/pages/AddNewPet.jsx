@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PetContext } from '../components/PetContext';
+import { MdOutlineAddAPhoto } from "react-icons/md";
+
 
 
 function AddNewPet() {
@@ -35,14 +37,31 @@ function AddNewPet() {
 
     setPets((prevPets) => [...prevPets, newPet]);
 
-    alert(`Pet added!`);
-    navigate('/');
+    alert("Pet added!");
+    navigate("/");
   };
 
   return (
-    <div className="p-8 text-center">
+    <div className="flex flex-col p-8 items-center">
+
+      {/* Header */}
       <h1 className="text-3xl font-bold mb-6">Add New Pet</h1>
-      <form className="flex flex-col items-center">
+
+      {/* Photo Upload */}
+      <div className="flex flex-col justify-center items-center relative mb-4">
+        <MdOutlineAddAPhoto size={200} />
+        <input
+          type="file"
+          onChange={(event) => setPhoto(URL.createObjectURL(event.target.files[0]))}
+          className="mb-4 p-2 w-4/5 border border-gray-300 rounded-md absolute inset-0 opacity-0"
+        />
+      </div>
+
+      <img src={photo} />
+
+      
+      {/* Form */}
+      <div>
         <input
           type="text"
           placeholder="Name (required)"
@@ -56,14 +75,15 @@ function AddNewPet() {
           onChange={(e) => setDob(e.target.value)}
           className="mb-4 p-2 w-4/5 border border-gray-300 rounded-md"
         />
+        <br/>
         <button
           type="button"
           onClick={handleSave}
-          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className="py-2 w-4/5 bg-blue-500 text-white rounded-lg"
         >
           Save
         </button>
-      </form>
+      </div>
     </div>
   );
 }
