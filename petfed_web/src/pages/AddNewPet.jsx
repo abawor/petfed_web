@@ -5,16 +5,10 @@ import { MdOutlineAddAPhoto } from "react-icons/md";
 
 
 
-function AddNewPet() {
+export default function AddNewPet() {
   const { setPets } = useContext(PetContext);
   const [photo, setPhoto] = useState(null);
   const [name, setName] = useState('');
-  const [dob, setDob] = useState('');
-  const [gender, setGender] = useState('');
-  const [type, setType] = useState('');
-  const [breed, setBreed] = useState('');
-  const [weight, setWeight] = useState('');
-  const [unit, setUnit] = useState('');
   const navigate = useNavigate();
 
   const handleSave = () => {
@@ -27,12 +21,6 @@ function AddNewPet() {
       id: (Math.random() * 10000).toFixed(0),
       name: name,
       photo: photo,
-      dob: dob,
-      gender: gender,
-      type: type,
-      breed: breed,
-      weight: weight,
-      unit: unit,
     };
 
     setPets((prevPets) => [...prevPets, newPet]);
@@ -42,7 +30,7 @@ function AddNewPet() {
   };
 
   return (
-    <div className="flex flex-col p-8 items-center">
+    <div className="flex flex-col p-8 items-center ">
 
       {/* Header */}
       <h1 className="text-3xl font-bold mb-6">Add New Pet</h1>
@@ -64,30 +52,33 @@ function AddNewPet() {
         <input
           type="file"
           onChange={(event) => setPhoto(URL.createObjectURL(event.target.files[0]))}
-          className="mb-4 p-2 w-4/5 border border-gray-300 rounded-md absolute inset-0 opacity-0"
+          className="mb-4 p-2 w-4/5 border border-slate-500 rounded-md absolute inset-0 opacity-0"
         />
+        <p className="text-slate-500">(Optional)</p>
       </div>
       
       {/* Form */}
-      <div>
+      <div className="w-3/5">
         <input
           type="text"
           placeholder="Name (required)"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="mb-4 p-2 w-4/5 border border-gray-300 rounded-md"
+          className="mb-4 p-2 w-full border border-slate-500 rounded-md"
         />
+        {/* DOB 
         <input
           type="date"
           value={dob}
           onChange={(e) => setDob(e.target.value)}
-          className="mb-4 p-2 w-4/5 border border-gray-300 rounded-md"
+          className="mb-4 p-2 border border-slate-500 rounded-md"
         />
+        */}
         <br/>
         <button
           type="button"
           onClick={handleSave}
-          className="py-2 w-4/5 bg-blue-500 text-white rounded-lg"
+          className="py-2 w-full bg-teal-300 text-white rounded-lg"
         >
           Save
         </button>
@@ -95,5 +86,3 @@ function AddNewPet() {
     </div>
   );
 }
-
-export default AddNewPet;
