@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomeScreen from './pages/HomeScreen';
+import MealsScreen from './pages/MealsScreen';
+import AddNewMeal from './pages/AddNewMeal';
 import AddNewPet from './pages/AddNewPet';
 import { PetProvider } from './components/PetContext';
-import MealsScreen from './pages/MealsScreen';
 import { MealsProvider } from './components/MealsContext';
 import { IoHomeOutline } from "react-icons/io5";
 import { IoFastFoodOutline } from "react-icons/io5";
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" element={<HomeScreen />} />
               <Route path="/add-new-pet" element={<AddNewPet />} />
               <Route path="/meals" element={<MealsScreen />} />
+              <Route path="/add-new-meal" element={<AddNewMeal />} />
             </Routes>
 
             {/* Navigation Bar */}

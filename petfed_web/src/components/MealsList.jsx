@@ -10,7 +10,7 @@ export default function MealsList() {
     return (
         <ul className="grid grid-cols-3 gap-4">
             <Link
-                to="/"
+                to="/add-new-meal"
                 className="aspect-square flex justify-center items-center text-slate-500 rounded-lg border-solid border-4 border-slate-500"
             >
                 <FaPlus size={50}/>

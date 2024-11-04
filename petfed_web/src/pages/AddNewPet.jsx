@@ -25,12 +25,11 @@ export default function AddNewPet() {
 
     setPets((prevPets) => [...prevPets, newPet]);
 
-    alert("Pet added!");
     navigate("/");
   };
 
   return (
-    <div className="flex flex-col p-8 items-center ">
+    <div className="flex flex-col p-8 items-center">
 
       {/* Header */}
       <h1 className="text-3xl font-bold mb-6">Add New Pet</h1>
@@ -61,7 +60,7 @@ export default function AddNewPet() {
       <div className="w-3/5">
         <input
           type="text"
-          placeholder="Name (required)"
+          placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="mb-4 p-2 w-full border border-slate-500 rounded-md"
@@ -78,7 +77,7 @@ export default function AddNewPet() {
         <button
           type="button"
           onClick={handleSave}
-          className="py-2 w-full bg-teal-300 text-white rounded-lg"
+          className="py-2 font-bold w-full bg-teal-400 text-white rounded-lg"
         >
           Save
         </button>
