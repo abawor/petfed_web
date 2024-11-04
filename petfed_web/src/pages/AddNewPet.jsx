@@ -35,7 +35,7 @@ export default function AddNewPet() {
       <h1 className="text-3xl font-bold mb-6">Add New Pet</h1>
 
       {/* Photo Upload */}
-      <div className="relative mb-4">
+      <div className="relative mb-4 teal-400">
         {!photo ? (
             <MdOutlineAddAPhoto size={250} />
           ) :

@@ -11,9 +11,9 @@ export default function MealsList() {
         <ul className="grid grid-cols-3 gap-4">
             <Link
                 to="/add-new-meal"
-                className="aspect-square flex justify-center items-center text-slate-500 rounded-lg border-solid border-4 border-slate-500"
+                className="aspect-square flex justify-center items-center bg-teal-100 text-slate-500 rounded-lg border-solid border-4 border-teal-400"
             >
-                <FaPlus size={50}/>
+                <FaPlus size={75} className="text-teal-400"/>
             </Link>
 
             {meals.map((item) => {

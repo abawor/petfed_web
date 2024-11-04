@@ -28,20 +28,20 @@ function App() {
             </Routes>
 
             {/* Navigation Bar */}
-            <nav className="flex justify-around p-4 bg-gray-100">
-              <Link to="/" className="text-lg">
+            <nav className="flex justify-around p-4 bg-teal-400">
+              <Link to="/" className="text-lg font-bold text-white">
                 <IoHomeOutline size={55} className=" mx-auto"/>
                 Home
               </Link>
-              <Link to="/meals" className="text-lg">
+              <Link to="/meals" className="text-lg font-bold text-white">
                 <IoFastFoodOutline size={55} className=" mx-auto"/>
                 Meals
               </Link>
-              <Link to="/" className="text-lg">
+              <Link to="/" className="text-lg font-bold text-white">
                 <MdSchedule size={55} className=" mx-auto"/>
                 Schedule
               </Link>
-              <Link to="/" className="text-lg">
+              <Link to="/" className="text-lg font-bold text-white">
                 <IoSettingsOutline size={55} className=" mx-auto"/>
                 Settings
               </Link>
