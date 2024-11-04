@@ -5,7 +5,7 @@ const robak = "https://deltaaquarium.co.uk/wp-content/uploads/2020/05/Amano_Shri
 
 export const PetContext = createContext();
 
-export function PetProvider({ children}) {
+export function PetProvider({ children }) {
     const [pets, setPets] = useState([
         { id: '1', photo: poppy , name: 'Poppy'},
         { id: '2', photo: robak , name: 'Robak'},

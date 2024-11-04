@@ -9,7 +9,7 @@ export default function PetList() {
         <ul style={styles.container}>
             {pets.map((item) => {
                 return (
-                    <li style={styles.petTile}>
+                    <li style={styles.petTile} key={ item.id }>
                         <img src={ item.photo } style={styles.petPhoto}/>
                         <p>{item.name}</p>
                     </li>
