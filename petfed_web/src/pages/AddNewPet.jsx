@@ -56,7 +56,6 @@ export default function AddNewPet() {
         <p className="text-slate-500">(Optional)</p>
       </div>
       
-      {/* Form */}
       <div className="w-3/5">
         <input
           type="text"
@@ -65,14 +64,6 @@ export default function AddNewPet() {
           onChange={(e) => setName(e.target.value)}
           className="mb-4 p-2 w-full border border-slate-500 rounded-md"
         />
-        {/* DOB 
-        <input
-          type="date"
-          value={dob}
-          onChange={(e) => setDob(e.target.value)}
-          className="mb-4 p-2 border border-slate-500 rounded-md"
-        />
-        */}
         <br/>
         <button
           type="button"

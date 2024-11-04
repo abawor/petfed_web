@@ -30,19 +30,19 @@ function App() {
             {/* Navigation Bar */}
             <nav className="flex justify-around p-4 bg-teal-400">
               <Link to="/" className="text-lg font-bold text-white">
-                <IoHomeOutline size={55} className=" mx-auto"/>
+                <IoHomeOutline size={55} className="mx-auto stroke-0"/>
                 Home
               </Link>
-              <Link to="/meals" className="text-lg font-bold text-white">
-                <IoFastFoodOutline size={55} className=" mx-auto"/>
+              <Link to="/meals" className="text-lg font-bold text-white ">
+                <IoFastFoodOutline size={55} className="mx-auto"/>
                 Meals
               </Link>
               <Link to="/" className="text-lg font-bold text-white">
-                <MdSchedule size={55} className=" mx-auto"/>
+                <MdSchedule size={55} className="mx-auto"/>
                 Schedule
               </Link>
               <Link to="/" className="text-lg font-bold text-white">
-                <IoSettingsOutline size={55} className=" mx-auto"/>
+                <IoSettingsOutline size={55} className="mx-auto"/>
                 Settings
               </Link>
             </nav>
