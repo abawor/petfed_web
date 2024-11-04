@@ -48,17 +48,25 @@ function AddNewPet() {
       <h1 className="text-3xl font-bold mb-6">Add New Pet</h1>
 
       {/* Photo Upload */}
-      <div className="flex flex-col justify-center items-center relative mb-4">
-        <MdOutlineAddAPhoto size={200} />
+      <div className="relative mb-4">
+        {!photo ? (
+            <MdOutlineAddAPhoto size={250} />
+          ) :
+          (
+            <div className="flex w-32 h-32 overflow-hidden rounded-full">
+              <img
+                src={photo}
+                className="object-cover h-full w-full"
+              />
+            </div>
+          )
+      }
         <input
           type="file"
           onChange={(event) => setPhoto(URL.createObjectURL(event.target.files[0]))}
           className="mb-4 p-2 w-4/5 border border-gray-300 rounded-md absolute inset-0 opacity-0"
         />
       </div>
-
-      <img src={photo} />
-
       
       {/* Form */}
       <div>
