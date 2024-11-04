@@ -1,10 +1,18 @@
-// AddNewPet.js
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PetContext } from '../components/PetContext';
+
 
 function AddNewPet() {
+  const { setPets } = useContext(PetContext);
+  const [photo, setPhoto] = useState(null);
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
+  const [gender, setGender] = useState('');
+  const [type, setType] = useState('');
+  const [breed, setBreed] = useState('');
+  const [weight, setWeight] = useState('');
+  const [unit, setUnit] = useState('');
   const navigate = useNavigate();
 
   const handleSave = () => {
@@ -12,7 +20,22 @@ function AddNewPet() {
       alert('Name is required!');
       return;
     }
-    alert(`Pet ${name} added!`);
+
+    const newPet = {
+      id: (Math.random() * 10000).toFixed(0),
+      name: name,
+      photo: photo,
+      dob: dob,
+      gender: gender,
+      type: type,
+      breed: breed,
+      weight: weight,
+      unit: unit,
+    };
+
+    setPets((prevPets) => [...prevPets, newPet]);
+
+    alert(`Pet added!`);
     navigate('/');
   };
 
