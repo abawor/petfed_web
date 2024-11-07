@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { ScheduleContext } from '../components/ScheduleContext';
 import { useNavigate } from 'react-router-dom';
 import { DropdownSelector } from 'reactjs-weekdays-picker';
+import TimePicker from 'rc-time-picker';
+import 'rc-time-picker/assets/index.css';
 
 export default function AddNewMeal() {
     const { setSchedule } = useContext(ScheduleContext);
@@ -19,9 +21,8 @@ export default function AddNewMeal() {
         const newSchedule = {
             id: (Math.random() * 10000).toFixed(0),
             name: name,
-            type: type,
-            quantity: quantity,
-            unit: unit,
+            days: days,
+            time: time,
         };
 
         setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
@@ -57,6 +58,16 @@ export default function AddNewMeal() {
                         width="100%"
                         fontSize="30"
                         placeholder=" Days"
+                    />
+                </div>
+
+                <div className="mb-4 w-full border border-slate-500 rounded-md">
+                    <TimePicker
+                        className="w-full"
+                        popupClassName="custom-time-picker-popup"
+                        showSecond={false}
+                        format={"h:mm a"}
+                        placeholder="Time"
                     />
                 </div>
 
