@@ -11,7 +11,7 @@ export default function AddNewMeal() {
     const navigate = useNavigate();
 
     const weekdays = [
-        { value: 'monday', label: 'Monday' },
+        { value: 'Monday', label: 'Monday' },
         { value: 'Tuesday', label: 'Tuesday' },
         { value: 'Wednesday', label: 'Wednesday' },
         { value: 'Thursday', label: 'Thursday' },
@@ -20,19 +20,22 @@ export default function AddNewMeal() {
         { value: 'Sunday', label: 'Sunday' },
     ]
 
-
-    console.log(time)
-
     const handleSave = () => {
         if (!name || !days || !time ) {
             alert('All fields are required!');
             return;
         }
 
+        const selectedDays = []
+        for (let i = 0; i < days.length; i++) {
+            selectedDays.push(days[i].value)
+        }
+
+
         const newSchedule = {
             id: (Math.random() * 10000).toFixed(0),
             name: name,
-            days: days,
+            days: selectedDays,
             time: time,
         };
 
