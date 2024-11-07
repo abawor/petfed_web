@@ -21,7 +21,8 @@ export default function AddNewMeal() {
     ]
 
 
-    console.log(days)
+    console.log(time)
+
     const handleSave = () => {
         if (!name || !days || !time ) {
             alert('All fields are required!');
@@ -64,7 +65,13 @@ export default function AddNewMeal() {
                     />
                 </div>
 
-
+                <div className="mb-4 leading-8 pl-1 text-left border border-slate-500 rounded-md">
+                    <input
+                        aria-label="Time"
+                        type="time"
+                        onChange={(e) => setTime(e.target.value)}
+                    />
+                </div>
 
                 <button
                 type="button"
