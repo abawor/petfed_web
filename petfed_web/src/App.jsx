@@ -1,11 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomeScreen from './pages/HomeScreen';
 import MealsScreen from './pages/MealsScreen';
+import ScheduleScreen from './pages/ScheduleScreen';
 import AddNewMeal from './pages/AddNewMeal';
+import AddNewSchedule from './pages/AddNewSchedule';
 import AddNewPet from './pages/AddNewPet';
 import { SafeAreaView } from 'react-native-web';
 import { PetProvider } from './components/PetContext';
 import { MealsProvider } from './components/MealsContext';
+import { ScheduleProvider } from './components/ScheduleContext';
 import { IoHomeOutline } from "react-icons/io5";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { MdSchedule } from "react-icons/md";
@@ -18,38 +21,42 @@ function App() {
     <SafeAreaView className="flex">
       <PetProvider>
         <MealsProvider>
-          <Router>
-            <div className="flex flex-col h-screen justify-between">
-          
-              {/* Routes for the app */}
-              <Routes>
-                <Route path="/" element={<HomeScreen />} />
-                <Route path="/add-new-pet" element={<AddNewPet />} />
-                <Route path="/meals" element={<MealsScreen />} />
-                <Route path="/add-new-meal" element={<AddNewMeal />} />
-              </Routes>
+          <ScheduleProvider>
+            <Router>
+              <div className="flex flex-col h-screen justify-between">
+            
+                {/* Routes for the app */}
+                <Routes>
+                  <Route path="/" element={<HomeScreen />} />
+                  <Route path="/add-new-pet" element={<AddNewPet />} />
+                  <Route path="/meals" element={<MealsScreen />} />
+                  <Route path="/add-new-meal" element={<AddNewMeal />} />
+                  <Route path="/schedule" element={<ScheduleScreen />} />
+                  <Route path="/add-new-schedule" element={<AddNewSchedule />} />
+                </Routes>
 
-              {/* Navigation Bar */}
-              <nav className="flex justify-around p-4 bg-teal-400">
-                <Link to="/" className="text-lg font-bold text-white">
-                  <IoHomeOutline size={55} className="mx-auto stroke-0"/>
-                  Home
-                </Link>
-                <Link to="/meals" className="text-lg font-bold text-white ">
-                  <IoFastFoodOutline size={55} className="mx-auto"/>
-                  Meals
-                </Link>
-                <Link to="/" className="text-lg font-bold text-white">
-                  <MdSchedule size={55} className="mx-auto"/>
-                  Schedule
-                </Link>
-                <Link to="/" className="text-lg font-bold text-white">
-                  <IoSettingsOutline size={55} className="mx-auto"/>
-                  Settings
-                </Link>
-              </nav>
-            </div>
-          </Router>
+                {/* Navigation Bar */}
+                <nav className="flex justify-around p-4 bg-teal-400">
+                  <Link to="/" className="text-lg font-bold text-white">
+                    <IoHomeOutline size={55} className="mx-auto stroke-0"/>
+                    Home
+                  </Link>
+                  <Link to="/meals" className="text-lg font-bold text-white ">
+                    <IoFastFoodOutline size={55} className="mx-auto"/>
+                    Meals
+                  </Link>
+                  <Link to="/schedule" className="text-lg font-bold text-white">
+                    <MdSchedule size={55} className="mx-auto"/>
+                    Schedule
+                  </Link>
+                  <Link to="/" className="text-lg font-bold text-white">
+                    <IoSettingsOutline size={55} className="mx-auto"/>
+                    Settings
+                  </Link>
+                </nav>
+              </div>
+            </Router>
+          </ScheduleProvider>
         </MealsProvider>
       </PetProvider>
     </SafeAreaView>

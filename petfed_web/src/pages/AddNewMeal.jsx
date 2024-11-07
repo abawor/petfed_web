@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { MealsContext } from '../components/MealsContext';
-import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
