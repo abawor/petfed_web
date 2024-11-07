@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ScheduleContext } from '../components/ScheduleContext';
 import { useNavigate } from 'react-router-dom';
-import { DropdownSelector } from 'reactjs-weekdays-picker';
-import TimePicker from 'rc-time-picker';
-import 'rc-time-picker/assets/index.css';
+import Select from 'react-select';
 
 export default function AddNewMeal() {
     const { setSchedule } = useContext(ScheduleContext);
@@ -12,6 +10,18 @@ export default function AddNewMeal() {
     const [time, setTime] = useState('');
     const navigate = useNavigate();
 
+    const weekdays = [
+        { value: 'monday', label: 'Monday' },
+        { value: 'Tuesday', label: 'Tuesday' },
+        { value: 'Wednesday', label: 'Wednesday' },
+        { value: 'Thursday', label: 'Thursday' },
+        { value: 'Friday', label: 'Friday' },
+        { value: 'Saturday', label: 'Saturday' },
+        { value: 'Sunday', label: 'Sunday' },
+    ]
+
+
+    console.log(days)
     const handleSave = () => {
         if (!name || !days || !time ) {
             alert('All fields are required!');
@@ -45,31 +55,16 @@ export default function AddNewMeal() {
                     className="mb-4 p-2 w-full border border-slate-500 rounded-md"
                 />
 
-                <div className="mb-4 leading-7 w-full border border-slate-500 rounded-md">
-                    <DropdownSelector
-                        state={days}
-                        setState={setDays}
-                        dayList={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
-                        multiple={true}
-                        selectedColor="#14b8a6"
-                        unselectedColor="#ffffff"
-                        selectedHoverColor="#14b8a6"
-                        unselectedHoverColor="#ffffff"
-                        width="100%"
-                        fontSize="30"
-                        placeholder=" Days"
+                <div className="mb-4 leading-8 text-left w-full border border-slate-500 rounded-md">
+                    <Select
+                        options={weekdays}
+                        isMulti={true}
+                        onChange={setDays}
+                        placeholder="Days"
                     />
                 </div>
 
-                <div className="mb-4 w-full border border-slate-500 rounded-md">
-                    <TimePicker
-                        className="w-full"
-                        popupClassName="custom-time-picker-popup"
-                        showSecond={false}
-                        format={"h:mm a"}
-                        placeholder="Time"
-                    />
-                </div>
+
 
                 <button
                 type="button"
