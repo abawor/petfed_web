@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ScheduleContext } from '../components/ScheduleContext';
 import { useNavigate } from 'react-router-dom';
-import 'react-dropdown/style.css';
+import { DropdownSelector } from 'reactjs-weekdays-picker';
 
 export default function AddNewMeal() {
     const { setSchedule } = useContext(ScheduleContext);
@@ -43,8 +43,22 @@ export default function AddNewMeal() {
                     onChange={(e) => setName(e.target.value)}
                     className="mb-4 p-2 w-full border border-slate-500 rounded-md"
                 />
-     
-                
+
+                <div className="mb-4 leading-7 w-full border border-slate-500 rounded-md">
+                    <DropdownSelector
+                        state={days}
+                        setState={setDays}
+                        dayList={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+                        multiple={true}
+                        selectedColor="#14b8a6"
+                        unselectedColor="#ffffff"
+                        selectedHoverColor="#14b8a6"
+                        unselectedHoverColor="#ffffff"
+                        width="100%"
+                        fontSize="30"
+                        placeholder=" Days"
+                    />
+                </div>
 
                 <button
                 type="button"
