@@ -47,7 +47,7 @@ function App() {
                 <nav className="flex justify-around p-4 bg-teal-400">
                   <Link
                     to="/"
-                    className={`${navActive.home && "text-black"} text-lg font-bold text-white`}
+                    className={`${navActive.home ? "text-black" : "text-white"} text-lg font-bold`}
                     onClick={() => setNavActive({ home: true, meals: false, schedule: false, settings: false })}
                   >
                     <IoHomeOutline size={55} className="mx-auto stroke-0"/>
@@ -55,7 +55,7 @@ function App() {
                   </Link>
                   <Link
                     to="/meals"
-                    className={`${navActive.meals && "text-black"} text-lg font-bold text-white`}
+                    className={`${navActive.meals ? "text-black" : "text-white"} text-lg font-bold`}
                     onClick={() => setNavActive({ home: false, meals: true, schedule: false, settings: false })}
                     >
                     <IoFastFoodOutline size={55} className="mx-auto"/>
@@ -63,7 +63,7 @@ function App() {
                   </Link>
                   <Link
                     to="/schedule"
-                    className={`${navActive.schedule && "text-black"} text-lg font-bold text-white`}
+                    className={`${navActive.schedule ? "text-black" : "text-white"} text-lg font-bold`}
                     onClick={() => setNavActive({ home: false, meals: false, schedule: true, settings: false })}
                   >
                     <MdSchedule size={55} className="mx-auto"/>
@@ -71,7 +71,7 @@ function App() {
                   </Link>
                   <Link
                     to="/settings"
-                    className={`${navActive.settings && "text-black"} text-lg font-bold text-white`}
+                    className={`${navActive.settings ? "text-black" : "text-white"} text-lg font-bold`}
                     onClick={() => setNavActive({ home: false, meals: false, schedule: false, settings: true })}
                   >
                     <IoSettingsOutline size={55} className="mx-auto"/>
