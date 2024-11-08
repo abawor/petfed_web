@@ -7,8 +7,8 @@ export const PetContext = createContext();
 
 export function PetProvider({ children }) {
     const [pets, setPets] = useState([
-        { id: '1', photo: poppy , name: 'Poppy'},
-        { id: '2', photo: robak , name: 'Robak'},
+        { id: '2', photo: poppy , name: 'Poppy'},
+        { id: '3', photo: robak , name: 'Robak'},
     ])
 
     return (
