@@ -19,9 +19,10 @@ export default function ScheduleList() {
             {schedule.map((item) => {
                 return (
                     <li key={ item.id } className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500">
-                        <p className="font-bold text-2xl">{item.name}</p>
-                        <p className="font-semibold line-clamp-1">{item.days}</p>
-                        <p className="">{item.quantity} {item.time}</p>
+                        <p className="font-bold text-xl truncate">{item.scheduledPet}</p>
+                        <p className="font-bold text-lg truncate">{item.name}</p>
+                        <p className="font-semibold truncate">{item.days}</p>
+                        <p>{item.quantity} {item.time}</p>
                     </li>
                 )
             })}

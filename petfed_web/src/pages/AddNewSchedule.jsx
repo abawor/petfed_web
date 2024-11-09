@@ -1,15 +1,25 @@
 import React, { useState, useContext } from 'react';
 import { ScheduleContext } from '../components/ScheduleContext';
+import { PetContext } from '../components/PetContext';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
 export default function AddNewMeal() {
     const { setSchedule } = useContext(ScheduleContext);
+    const [scheduledPet, setScheduledPet] = useState('');
     const [name, setName] = useState('');
     const [days, setDays] = useState('');
     const [time, setTime] = useState('');
     const navigate = useNavigate();
+    const { pets } = useContext(PetContext);
 
+    const petList = 
+        pets.map((pet) => {
+            return (
+                { value: pet.name, label: pet.name }
+            )
+        })
+    
     const weekdays = [
         { value: 'Monday', label: 'Monday' },
         { value: 'Tuesday', label: 'Tuesday' },
@@ -21,7 +31,7 @@ export default function AddNewMeal() {
     ]
 
     const handleSave = () => {
-        if (!name || !days || !time ) {
+        if (!scheduledPet || !name || !days || !time ) {
             alert('All fields are required!');
             return;
         }
@@ -34,6 +44,7 @@ export default function AddNewMeal() {
 
         const newSchedule = {
             id: (Math.random() * 10000).toFixed(0),
+            scheduledPet: scheduledPet,
             name: name,
             days: selectedDays,
             time: time,
@@ -50,6 +61,15 @@ export default function AddNewMeal() {
             <h1 className="text-3xl font-bold mb-6">Add new schedule</h1>
 
             <div className="w-3/5">
+
+                <div className="mb-4 leading-8 text-left w-full border border-slate-500 rounded-md">
+                    <Select
+                        options={petList}
+                        isMulti={true}
+                        onChange={setScheduledPet}
+                        placeholder="Pet"
+                    />
+                </div>
 
                 <input
                     type="text"
