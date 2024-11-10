@@ -39,17 +39,26 @@ export default function AddNewMeal() {
             selectedDays.push(days[i].value)
         }
 
-
         const newSchedule = {
             id: (Math.random() * 10000).toFixed(0),
-            scheduledPet: scheduledPet,
             name: name,
             days: selectedDays,
             time: time,
         };
-        /*
-        setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
-        */
+
+        const updatedPet = pets.map(pet => {
+            if (pet.name === scheduledPet.value) {
+                return {
+                    ...pet,
+                    schedules: [...pet.schedules, newSchedule]
+                }
+            } else {
+                return pet
+            }
+        })
+
+        setPets(updatedPet);
+        
         navigate('/schedule');
     };
 
