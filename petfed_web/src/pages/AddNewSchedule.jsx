@@ -1,17 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { ScheduleContext } from '../components/ScheduleContext';
 import { PetContext } from '../components/PetContext';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
 export default function AddNewMeal() {
-    const { setSchedule } = useContext(ScheduleContext);
     const [scheduledPet, setScheduledPet] = useState('');
     const [name, setName] = useState('');
     const [days, setDays] = useState('');
     const [time, setTime] = useState('');
     const navigate = useNavigate();
-    const { pets } = useContext(PetContext);
+    const { pets, setPets } = useContext(PetContext);
 
     const petList = 
         pets.map((pet) => {
@@ -49,9 +47,9 @@ export default function AddNewMeal() {
             days: selectedDays,
             time: time,
         };
-
+        /*
         setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
-
+        */
         navigate('/schedule');
     };
 
@@ -65,7 +63,7 @@ export default function AddNewMeal() {
                 <div className="mb-4 leading-8 text-left w-full border border-slate-500 rounded-md">
                     <Select
                         options={petList}
-                        isMulti={true}
+                        isMulti={false}
                         onChange={setScheduledPet}
                         placeholder="Pet"
                     />

@@ -21,6 +21,8 @@ export default function AddNewPet() {
       id: (Math.random() * 10000).toFixed(0),
       name: name,
       photo: photo,
+      schedules: [],
+      feedingLog: []
     };
 
     setPets((prevPets) => [...prevPets, newPet]);
