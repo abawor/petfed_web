@@ -24,7 +24,8 @@ export function PetProvider({ children }) {
                         'Saturday',
                         'Sunday'
                     ],
-                    time: '9:00'
+                    time: '9:00',
+                    reminder: true
                 },
                 {
                     id: 2,
@@ -38,7 +39,8 @@ export function PetProvider({ children }) {
                         'Saturday',
                         'Sunday'
                     ],
-                    time: '12:00'
+                    time: '12:00',
+                    reminder: true
                 }
             ],
             feedingLog: []
@@ -55,7 +57,8 @@ export function PetProvider({ children }) {
                         'Saturday',
                         'Sunday'
                     ],
-                    time: '9:00'
+                    time: '9:00',
+                    reminder: true
                 }
             ],
             feedingLog: []

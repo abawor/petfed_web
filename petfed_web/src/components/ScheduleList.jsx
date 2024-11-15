@@ -2,10 +2,29 @@ import React, { useContext } from 'react';
 import { PetContext } from './PetContext';
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import Toggle from 'react-toggle'
+import 'react-toggle/style.css';
 
 
 export default function ScheduleList() {
-    const { pets } = useContext(PetContext);
+    const { pets, setPets } = useContext(PetContext);
+
+    /*
+    const updateToggle = pets.map(pet => {
+        return (
+            pet.schedules.map((schedule) => {
+                if (name === scheduledPet.value) {
+                    return {
+                        ...pet,
+                        schedules: [...pet.schedules, newSchedule]
+                    }
+                } else {
+                    return pet
+                }
+            })
+        )
+    })
+    */
 
     return (
         <ul className="grid grid-cols-3 gap-4">
@@ -25,6 +44,11 @@ export default function ScheduleList() {
                                 <p className="font-bold text-lg truncate">{schedule.name}</p>
                                 <p className="font-semibold truncate">{schedule.days}</p>
                                 <p>{schedule.time}</p>
+                                <Toggle
+                                    className="float-right mr-1"
+                                    checked={schedule.reminder}
+                                    onChange={setPets(updateToggle)}
+                                />
                             </li>
                         )
                     })

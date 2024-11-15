@@ -44,6 +44,7 @@ export default function AddNewMeal() {
             name: name,
             days: selectedDays,
             time: time,
+            reminder: true
         };
 
         const updatedPet = pets.map(pet => {
