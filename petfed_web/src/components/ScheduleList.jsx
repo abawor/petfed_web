@@ -9,22 +9,29 @@ import 'react-toggle/style.css';
 export default function ScheduleList() {
     const { pets, setPets } = useContext(PetContext);
 
-    /*
-    const updateToggle = pets.map(pet => {
-        return (
-            pet.schedules.map((schedule) => {
-                if (name === scheduledPet.value) {
-                    return {
-                        ...pet,
-                        schedules: [...pet.schedules, newSchedule]
-                    }
-                } else {
-                    return pet
+    
+    const handleToggle = (petId, scheduleId) => {
+        const updatedPets = pets.map((pet) => {
+          if (pet.id === petId) {
+            return {
+              ...pet,
+              schedules: pet.schedules.map((schedule) => {
+                if (schedule.id === scheduleId) {
+                  return {
+                    ...schedule,
+                    reminder: !schedule.reminder,
+                  };
                 }
-            })
-        )
-    })
-    */
+                return schedule;
+              }),
+            };
+          }
+          return pet;
+        });
+    
+        setPets(updatedPets);
+      };
+
 
     return (
         <ul className="grid grid-cols-3 gap-4">
@@ -42,13 +49,16 @@ export default function ScheduleList() {
                             <li key={ schedule.id } className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500">
                                 <p className="font-bold text-xl truncate">{pet.name}</p>
                                 <p className="font-bold text-lg truncate">{schedule.name}</p>
-                                <p className="font-semibold truncate">{schedule.days}</p>
+                                <p className="font-semibold truncate">{schedule.days.join(', ')}</p>
                                 <p>{schedule.time}</p>
-                                <Toggle
-                                    className="float-right mr-1"
-                                    checked={schedule.reminder}
-                                    onChange={setPets(updateToggle)}
-                                />
+                                <div className="flex items-center justify-end">
+                                    <p className="text-xs mr-1">Reminder</p>
+                                    <Toggle
+                                        className="float-right mr-1"
+                                        checked={schedule.reminder}
+                                        onChange={() => handleToggle(pet.id, schedule.id)}
+                                        />
+                                </div>
                             </li>
                         )
                     })
