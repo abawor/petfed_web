@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { PetContext } from './PetContext';
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { MdOutlineDeleteForever } from "react-icons/md";
 import Toggle from 'react-toggle'
 import 'react-toggle/style.css';
 
@@ -30,7 +31,35 @@ export default function ScheduleList() {
         });
     
         setPets(updatedPets);
-      };
+    };
+
+    /*
+    const handleDelete = (petId, scheduleId) => {
+
+        setPets(prevState => {
+            return prevState.filter(())
+        })
+
+        
+        const updatedPets = pets.map((pet) => {
+          if (pet.id === petId) {
+            return {
+              ...pet,
+              schedules: pet.schedules.map((schedule) => {
+                if (schedule.id === scheduleId) {
+                }
+                return schedule
+            }),
+        };
+          }
+          return pet;
+        });
+        console.log(updatedPets)
+    
+        setPets(updatedPets);
+        
+    };
+    */
 
 
     return (
@@ -46,8 +75,17 @@ export default function ScheduleList() {
                 return (
                     pet.schedules.map((schedule) => {
                         return (
-                            <li key={ schedule.id } className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500">
-                                <p className="font-bold text-xl truncate">{pet.name}</p>
+                            <li
+                                key={ schedule.id }
+                                className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500"
+                            >
+                                <div className="flex items-center justify-between">
+                                    <p className="font-bold text-xl truncate">{pet.name}</p>
+                                    <MdOutlineDeleteForever
+                                        size={50}
+                                        onClick={() => handleDelete(pet.id, schedule.id)}
+                                    />
+                                </div>
                                 <p className="font-bold text-lg truncate">{schedule.name}</p>
                                 <p className="font-semibold truncate">{schedule.days.join(', ')}</p>
                                 <p>{schedule.time}</p>
