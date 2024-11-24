@@ -44,7 +44,7 @@ export default function ScheduleList() {
           return {
             ...pet,
             schedules: pet.schedules.filter(
-              schedule => schedule.id != scheduleId
+              schedule => schedule.id !== scheduleId
             )
           }
         }

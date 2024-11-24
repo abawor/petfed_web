@@ -15,12 +15,8 @@ export default function MealsList() {
             return
         }
 
-        const updatedMealsList = meals.
-            filter(meal => meal.id != mealId).
-            map(meal => {
-                return meal
-            })
-
+        const updatedMealsList = meals.filter(meal => meal.id !== mealId)
+        
         setMeals(updatedMealsList)
     }
 
