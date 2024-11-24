@@ -33,33 +33,26 @@ export default function ScheduleList() {
         setPets(updatedPets);
     };
 
-    /*
-    const handleDelete = (petId, scheduleId) => {
-
-        setPets(prevState => {
-            return prevState.filter(())
-        })
-
-        
-        const updatedPets = pets.map((pet) => {
-          if (pet.id === petId) {
-            return {
-              ...pet,
-              schedules: pet.schedules.map((schedule) => {
-                if (schedule.id === scheduleId) {
-                }
-                return schedule
-            }),
-        };
-          }
-          return pet;
-        });
-        console.log(updatedPets)
     
-        setPets(updatedPets);
-        
+    const handleDelete = (petId, scheduleId) => {
+      const newPetsList = pets.map(pet => {
+        if (pet.id === petId) {
+          return {
+            ...pet,
+            schedules: pet.schedules.
+              filter(schedule => schedule.id != scheduleId).
+              map(schedule => {
+                return schedule
+              })
+            }
+        } else {
+          return pet
+        }       
+      })
+
+      setPets(newPetsList)
     };
-    */
+    
 
 
     return (
