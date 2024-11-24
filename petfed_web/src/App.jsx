@@ -9,7 +9,7 @@ import AddNewPet from './pages/AddNewPet';
 import { SafeAreaView } from 'react-native-web';
 import { PetProvider } from './components/PetContext';
 import { MealsProvider } from './components/MealsContext';
-import { IoHomeOutline } from "react-icons/io5";
+import { MdOutlinePets } from "react-icons/md";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { MdSchedule } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -48,8 +48,8 @@ function App() {
                   className={`${navActive.home ? "text-black" : "text-white"} text-lg font-bold`}
                   onClick={() => setNavActive({ home: true, meals: false, schedule: false, settings: false })}
                 >
-                  <IoHomeOutline size={55} className="mx-auto stroke-0"/>
-                  Home
+                  <MdOutlinePets size={55} className="mx-auto stroke-0"/>
+                  Pets
                 </Link>
                 <Link
                   to="/meals"
