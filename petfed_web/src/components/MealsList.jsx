@@ -11,15 +11,17 @@ export default function MealsList() {
     /* Add delete for meals */
 
     const handleDelete = (mealId) => {
-        if(confirm("Are you sure?\nYou will not be able to undo this action")) {
-            const newMealsList = meals.
-                filter(meal => meal.id != mealId).
-                map(meal => {
-                    return meal
-                })
-
-            setMeals(newMealsList)
+        if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
+            return
         }
+
+        const updatedMealsList = meals.
+            filter(meal => meal.id != mealId).
+            map(meal => {
+                return meal
+            })
+
+        setMeals(updatedMealsList)
     }
 
     return (
