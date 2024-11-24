@@ -3,6 +3,7 @@ import { useState } from "react";
 import HomeScreen from './pages/HomeScreen';
 import MealsScreen from './pages/MealsScreen';
 import ScheduleScreen from './pages/ScheduleScreen';
+import SettingsScreen from './pages/SettingsScreen';
 import AddNewMeal from './pages/AddNewMeal';
 import AddNewSchedule from './pages/AddNewSchedule';
 import AddNewPet from './pages/AddNewPet';
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/add-new-meal" element={<AddNewMeal />} />
                 <Route path="/schedule" element={<ScheduleScreen />} />
                 <Route path="/add-new-schedule" element={<AddNewSchedule />} />
+                <Route path="/settings" element={<SettingsScreen />} />
               </Routes>
 
               {/* Navigation Bar */}

@@ -89,7 +89,7 @@ export default function ScheduleList() {
                                         className="float-right mr-1"
                                         checked={schedule.reminder}
                                         onChange={() => handleToggle(pet.id, schedule.id)}
-                                        />
+                                    />
                                 </div>
                             </li>
                         )
