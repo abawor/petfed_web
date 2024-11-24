@@ -35,7 +35,7 @@ export default function ScheduleList() {
 
     
     const handleDelete = (petId, scheduleId) => {
-      if(confirm("Are you sure?")) {
+      if(confirm("Are you sure?\nYou will not be able to undo this action")) {
         const newPetsList = pets.map(pet => {
         if (pet.id === petId) {
           return {
