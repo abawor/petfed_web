@@ -35,22 +35,24 @@ export default function ScheduleList() {
 
     
     const handleDelete = (petId, scheduleId) => {
-      const newPetsList = pets.map(pet => {
+      if(confirm("Are you sure?")) {
+        const newPetsList = pets.map(pet => {
         if (pet.id === petId) {
           return {
             ...pet,
             schedules: pet.schedules.
-              filter(schedule => schedule.id != scheduleId).
-              map(schedule => {
-                return schedule
-              })
-            }
+            filter(schedule => schedule.id != scheduleId).
+            map(schedule => {
+              return schedule
+            })
+          }
         } else {
           return pet
         }       
       })
-
+      
       setPets(newPetsList)
+    }
     };
     
 
