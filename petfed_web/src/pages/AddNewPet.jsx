@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PetContext } from '../components/PetContext';
-import { MdOutlineAddAPhoto } from "react-icons/md";
-
-
+import { MdOutlineAddAPhoto } from 'react-icons/md';
+import PetIcon from '../assets/android-chrome-192x192.png';
 
 export default function AddNewPet() {
   const { setPets } = useContext(PetContext);
-  const [photo, setPhoto] = useState(null);
-  const [name, setName] = useState('');
+  const [photo, setPhoto] = useState();
+  const [name, setName] = useState();
   const navigate = useNavigate();
 
   const handleSave = () => {
@@ -20,7 +19,7 @@ export default function AddNewPet() {
     const newPet = {
       id: (Math.random() * 10000).toFixed(0),
       name: name,
-      photo: photo,
+      photo: photo ? photo : PetIcon,
       schedules: [],
       feedingLog: []
     };

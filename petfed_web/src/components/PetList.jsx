@@ -8,19 +8,22 @@ export default function PetList() {
     const { pets, setPets } = useContext(PetContext);
 
     const handleDelete = (petId => {
+        if(!confirm("Are you sure you want to delete this pet?\nYou will not be able to undo this action")) {
+            return
+        }
+        
         const updatedPetsList = pets.filter(pet => pet.id !== petId)
 
         setPets(updatedPetsList)
     })
 
     const bind = useLongPress((callback, petId) => 
-    
         handleDelete(petId.context),
         {threshold: 1000,}
     )
 
     return (
-        <ul className="grid grid-cols-3 gap-4">
+        <ul className={pets.length === 0 ? "flex" : "grid grid-cols-3 gap-4"}>
             <div key={ 1 }>
                 <li>
                     <Link
