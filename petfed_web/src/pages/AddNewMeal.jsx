@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { MealsContext } from '../components/MealsContext';
+/*import { MealsContext } from '../components/MealsContext';*/
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 export default function AddNewMeal() {
-    const { setMeals } = useContext(MealsContext);
+    /*const { setMeals } = useContext(MealsContext);*/
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [quantity, setQuantity] = useState('');

@@ -1,24 +1,21 @@
-import React, { useContext } from 'react';
-import { MealsContext } from './MealsContext';
+import { useDispatch, useSelector } from "react-redux"
+import { deleteMeal } from "../redux/meals"
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from "react-icons/md";
 
 
 export default function MealsList() {
-    const { meals, setMeals } = useContext(MealsContext);
-
-    /* Add delete for meals */
+    const { meals } = useSelector(state => state.meals)
+    const dispatch = useDispatch()
 
     const handleDelete = (mealId) => {
         if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
             return
         }
 
-        const updatedMealsList = meals.filter(meal => meal.id !== mealId)
-        
-        setMeals(updatedMealsList)
-    }
+        dispatch(deleteMeal(mealId))
+   }
 
     return (
         <ul className="grid grid-cols-3 gap-4">
