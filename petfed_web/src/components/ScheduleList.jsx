@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { PetContext } from './PetContext';
+import React from 'react';
+import { useDispatch, useSelector } from "react-redux"
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -8,8 +8,8 @@ import 'react-toggle/style.css';
 
 
 export default function ScheduleList() {
-    const { pets, setPets } = useContext(PetContext);
-
+    const { pets } = useSelector(state => state.pets)
+    const dispatch = useDispatch()
     
     const handleToggle = (petId, scheduleId) => {
         const updatedPets = pets.map((pet) => {

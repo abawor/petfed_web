@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
-import { PetContext } from './PetContext';
+import React from 'react';
+import { useDispatch, useSelector } from "react-redux"
+import { deletePet } from "../redux/Pets"
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
 export default function PetList() {
-    const { pets, setPets } = useContext(PetContext);
+    const { pets } = useSelector(state => state.pets)
+    const dispatch = useDispatch()
 
     const handleDelete = (petId => {
         if(!confirm("Are you sure you want to delete this pet?\nYou will not be able to undo this action")) {
             return
         }
         
-        const updatedPetsList = pets.filter(pet => pet.id !== petId)
-
-        setPets(updatedPetsList)
+        dispatch(deletePet(petId))
     })
 
     const bind = useLongPress((callback, petId) => 

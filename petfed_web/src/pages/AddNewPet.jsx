@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PetContext } from '../components/PetContext';
+import { useDispatch, useSelector } from "react-redux"
 import { MdOutlineAddAPhoto } from 'react-icons/md';
 import PetIcon from '../assets/android-chrome-192x192.png';
 
 export default function AddNewPet() {
-  const { setPets } = useContext(PetContext);
+  const { pets } = useSelector(state => state.pets)
+  const dispatch = useDispatch()
   const [photo, setPhoto] = useState();
   const [name, setName] = useState();
   const navigate = useNavigate();
