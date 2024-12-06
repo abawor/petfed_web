@@ -66,12 +66,15 @@ export const petsSlice = createSlice({
         ]
     },
     reducers: {
+        addNewPet: (state, action) => {
+            state.pets.push(action.payload)
+        },
         deletePet: (state, action) => {
             state.pets = state.pets.filter(pet => pet.id !== action.payload)
         }
     }
 });
 
-export const { deletePet }  = petsSlice.actions;
+export const { addNewPet, deletePet }  = petsSlice.actions;
 
 export default petsSlice.reducer;

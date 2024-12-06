@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
+import { addNewPet } from "../redux/Pets"
 import { MdOutlineAddAPhoto } from 'react-icons/md';
 import PetIcon from '../assets/android-chrome-192x192.png';
 
 export default function AddNewPet() {
   const { pets } = useSelector(state => state.pets)
   const dispatch = useDispatch()
-  const [photo, setPhoto] = useState();
-  const [name, setName] = useState();
+  const [photo, setPhoto] = useState(PetIcon);
+  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   const handleSave = () => {
@@ -20,12 +21,12 @@ export default function AddNewPet() {
     const newPet = {
       id: (Math.random() * 10000).toFixed(0),
       name: name,
-      photo: photo ? photo : PetIcon,
+      photo: photo,
       schedules: [],
       feedingLog: []
     };
 
-    setPets((prevPets) => [...prevPets, newPet]);
+    dispatch(addNewPet(newPet))
 
     navigate("/");
   };
@@ -38,7 +39,7 @@ export default function AddNewPet() {
 
       {/* Photo Upload */}
       <div className="relative mb-4 teal-400">
-        {!photo ? (
+        {photo === PetIcon ? (
             <MdOutlineAddAPhoto size={250} />
           ) :
           (
