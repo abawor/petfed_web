@@ -1,16 +1,17 @@
-import React, { useState, useContext } from 'react';
-/*import { MealsContext } from '../components/MealsContext';*/
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addMeal } from '../redux/Meals'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 export default function AddNewMeal() {
-    /*const { setMeals } = useContext(MealsContext);*/
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [quantity, setQuantity] = useState('');
     const [unit, setUnit] = useState('');
-    const navigate = useNavigate();
     const foodTypes = ['Wet', 'Dry', 'Snack', 'Other'];
     const unitTypes = ['grams', 'ounces', 'count', 'other'];
 
@@ -28,7 +29,7 @@ export default function AddNewMeal() {
             unit: unit,
         };
 
-        setMeals((prevMeals) => [...prevMeals, newMeal]);
+        dispatch(addMeal(newMeal))
 
         navigate('/meals');
     };

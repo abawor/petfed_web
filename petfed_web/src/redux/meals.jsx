@@ -10,12 +10,15 @@ export const mealsSlice = createSlice({
         ]
     },
     reducers: {
+        addMeal : (state, action) => {
+            state.meals.push(action.payload)
+        },
         deleteMeal: (state, action) => {
             state.meals = state.meals.filter(meal => meal.id !== action.payload)
         }
     }
 });
 
-export const { deleteMeal }  = mealsSlice.actions;
+export const { addMeal, deleteMeal }  = mealsSlice.actions;
 
 export default mealsSlice.reducer;

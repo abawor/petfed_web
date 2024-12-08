@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { addNewPet } from "../redux/Pets"
 import { MdOutlineAddAPhoto } from 'react-icons/md';
 import PetIcon from '../assets/android-chrome-192x192.png';
 
 export default function AddNewPet() {
-  const { pets } = useSelector(state => state.pets)
   const dispatch = useDispatch()
   const [photo, setPhoto] = useState(PetIcon);
   const [name, setName] = useState("");
