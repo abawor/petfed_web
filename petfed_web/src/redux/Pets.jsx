@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { produce } from "immer";
 
 const poppy = "https://www.allthingsdogs.com/wp-content/uploads/2019/08/Dapple-Dachshund-Portrait.jpg"
 const robak = "https://sevenports.com/wp-content/uploads/aquarium-blog-post-9-1200x900.jpg"
@@ -71,10 +72,32 @@ export const petsSlice = createSlice({
         },
         deletePet: (state, action) => {
             state.pets = state.pets.filter(pet => pet.id !== action.payload)
+        },
+        addSchedule: (state, action) => {
+            const petName = action.payload[0].value
+            const newSchedule = action.payload[1]
+
+            return produce(state, draft => {
+                const pet = draft.pets.find(pet => pet.name === petName)
+                pet.schedules.push(newSchedule)
+            })
+
+        },
+        toggleScheduleNotification: (state, action) => {
+
+        },
+        deleteSchedule: (state, action) => {
+
         }
     }
 });
 
-export const { addNewPet, deletePet }  = petsSlice.actions;
+export const {
+    addNewPet,
+    deletePet,
+    addSchedule,
+    toggleScheduleNotification,
+    deleteSchedule
+}  = petsSlice.actions;
 
 export default petsSlice.reducer;

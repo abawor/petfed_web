@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
+import { addSchedule } from '../redux/Pets'
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
@@ -48,18 +49,7 @@ export default function AddNewMeal() {
             reminder: true
         };
 
-        const updatedPet = pets.map(pet => {
-            if (pet.name === scheduledPet.value) {
-                return {
-                    ...pet,
-                    schedules: [...pet.schedules, newSchedule]
-                }
-            } else {
-                return pet
-            }
-        })
-
-        setPets(updatedPet);
+        dispatch(addSchedule([scheduledPet, newSchedule]));
         
         navigate('/schedule');
     };
