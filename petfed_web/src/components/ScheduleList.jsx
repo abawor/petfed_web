@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleScheduleNotification } from '../redux/Pets';
+import { toggleScheduleNotification, deleteSchedule } from '../redux/Pets';
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from 'react-icons/md';
@@ -16,20 +16,8 @@ export default function ScheduleList() {
       if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
         return
       }
-
-      const updatedPetsList = pets.map(pet => {
-        if (pet.id === petId) {
-          return {
-            ...pet,
-            schedules: pet.schedules.filter(
-              schedule => schedule.id !== scheduleId
-            )
-          }
-        }
-        return pet
-      })
       
-      setPets(updatedPetsList)
+      dispatch(deleteSchedule([petId, scheduleId]))
     };
     
 

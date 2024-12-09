@@ -95,7 +95,13 @@ export const petsSlice = createSlice({
             })
         },
         deleteSchedule: (state, action) => {
+            const petId = action.payload[0]
+            const scheduleId = action.payload[1]
 
+            return produce(state, draft => {
+                const pet = draft.pets.find(pet => pet.id === petId)
+                pet.schedules = pet.schedules.filter(schedule => schedule.id != scheduleId)
+            })
         }
     }
 });
