@@ -1,38 +1,16 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleScheduleNotification } from '../redux/Pets';
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { MdOutlineDeleteForever } from "react-icons/md";
-import Toggle from 'react-toggle'
+import { MdOutlineDeleteForever } from 'react-icons/md';
+import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 
 
 export default function ScheduleList() {
     const { pets } = useSelector(state => state.pets)
     const dispatch = useDispatch()
-    
-    const handleToggle = (petId, scheduleId) => {
-        const updatedPets = pets.map((pet) => {
-          if (pet.id === petId) {
-            return {
-              ...pet,
-              schedules: pet.schedules.map((schedule) => {
-                if (schedule.id === scheduleId) {
-                  return {
-                    ...schedule,
-                    reminder: !schedule.reminder,
-                  };
-                }
-                return schedule;
-              }),
-            };
-          }
-          return pet;
-        });
-    
-        setPets(updatedPets);
-    };
-
     
     const handleDelete = (petId, scheduleId) => {
       if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
@@ -88,7 +66,7 @@ export default function ScheduleList() {
                                     <Toggle
                                         className="float-right mr-1"
                                         checked={schedule.reminder}
-                                        onChange={() => handleToggle(pet.id, schedule.id)}
+                                        onChange={() => dispatch(toggleScheduleNotification([pet.id, schedule.id]))}
                                     />
                                 </div>
                             </li>

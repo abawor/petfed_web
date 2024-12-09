@@ -84,7 +84,15 @@ export const petsSlice = createSlice({
 
         },
         toggleScheduleNotification: (state, action) => {
+            const petId = action.payload[0]
+            const scheduleId = action.payload[1]
 
+            return produce(state, draft => {
+                const pet = draft.pets.find(pet => pet.id === petId)
+                const schedule = pet.schedules.find(schedule => schedule.id === scheduleId)
+
+                schedule.reminder = !schedule.reminder
+            })
         },
         deleteSchedule: (state, action) => {
 
