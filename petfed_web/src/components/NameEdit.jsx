@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TiTick } from "react-icons/ti";
 
 function NameEdit() {
-    const [name, setName] = useState('');
+    const savedName = localStorage.getItem("userName")
+    const [name, setName] = useState(savedName ? savedName : "");
     const [editName, setEditName] = useState(false);
+
+    useEffect(() => {
+      localStorage.setItem("userName", name)
+    }, [name]);
 
     return (
       <div>
