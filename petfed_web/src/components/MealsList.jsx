@@ -1,21 +1,29 @@
-import { useDispatch, useSelector } from "react-redux"
-import { deleteMeal } from "../redux/Meals"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMeals, deleteMeal, addMeal } from "../redux/Meals";
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from "react-icons/md";
 
 
 export default function MealsList() {
-    const { meals } = useSelector(state => state.meals)
+    const { meals, loading, error } = useSelector(state => state.meals)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(fetchMeals())
+    }, [dispatch])
+
     const handleDelete = (mealId) => {
-        if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
+        /*if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
             return
         }
-
+        */
         dispatch(deleteMeal(mealId))
    }
+
+   if (loading) return <p>Loading meals...</p>
+   if (error) return <p>Error: {error}...</p>
 
     return (
         <ul className="grid grid-cols-3 gap-4">
@@ -25,8 +33,8 @@ export default function MealsList() {
             >
                 <FaPlus size={75}/>
             </Link>
-
-            {meals.map((meal) => {
+            {meals !== [] || meals !== undefined ? 
+            meals.map((meal) => {
                 return (
                     <li key={ meal.id } className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500">
                         <div className="flex items-top justify-between">
@@ -42,8 +50,8 @@ export default function MealsList() {
                         <p className="">{meal.quantity} {meal.unit}</p>
                     </li>
                 )
-            })}
-
+            })
+            : "" }
         </ul>
     )
 }
