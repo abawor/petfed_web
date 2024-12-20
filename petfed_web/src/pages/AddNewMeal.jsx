@@ -22,7 +22,6 @@ export default function AddNewMeal() {
         }
 
         const newMeal = {
-            id: (Math.random() * 10000).toFixed(0),
             name: name,
             type: type,
             quantity: quantity,

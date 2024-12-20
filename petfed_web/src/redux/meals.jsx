@@ -19,16 +19,13 @@ export const mealsSlice = createSlice({
         setError: (state, action) => {
             state.error = action.payload
         },
-        addMealLocally : (state, action) => {
-            state.meals.push(action.payload)
-        },
         deleteMealLocally: (state, action) => {
             state.meals = state.meals.filter(meal => meal.id !== action.payload)
         }
     }
 });
 
-export const { setMeals, addMealLocally, deleteMealLocally, setLoading, setError }  = mealsSlice.actions;
+export const { setMeals, deleteMealLocally, setLoading, setError }  = mealsSlice.actions;
 
 export const fetchMeals = () => async (dispatch) => {
     dispatch(setLoading(true))
@@ -51,7 +48,6 @@ export const addMeal = (meal) => async (dispatch) => {
     try {
         const mealsCol = collection(db, "meals")
         const docRef = await addDoc(mealsCol, meal)
-        dispatch(addMealLocally({id: docRef.id, ...meal}))
     } catch (error) {
         dispatch(setError(error.message))
     }

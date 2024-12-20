@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMeals, deleteMeal, addMeal } from "../redux/Meals";
+import { fetchMeals, deleteMeal } from "../redux/Meals";
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -15,10 +15,10 @@ export default function MealsList() {
     }, [dispatch])
 
     const handleDelete = (mealId) => {
-        /*if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
+        if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
             return
         }
-        */
+        
         dispatch(deleteMeal(mealId))
    }
 
