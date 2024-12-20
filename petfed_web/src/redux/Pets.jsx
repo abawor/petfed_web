@@ -78,6 +78,15 @@ export const fetchPets = () => async (dispatch) => {
     }
 }
 
+export const addPet = (pet) => async (dispatch) => {
+    try {
+        const petsCol = collection(db, "pets")
+        const docRef = await addDoc(petsCol, pet)
+    } catch (error) {
+        dispatch(setError(error.message))
+    }
+}
+
 export const deletePet = (petId) => async (dispatch) => {
     try {
         const petDoc = doc(db, "pets", petId)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux"
-/*import { addNewPet } from "../redux/Pets"*/
+import { addPet } from "../redux/Pets"
 import { MdOutlineAddAPhoto } from 'react-icons/md';
 import PetIcon from '../assets/android-chrome-192x192.png';
 
@@ -18,14 +18,13 @@ export default function AddNewPet() {
     }
 
     const newPet = {
-      id: (Math.random() * 10000).toFixed(0),
       name: name,
       photo: photo,
       schedules: [],
       feedingLog: []
     };
 
-    dispatch(addNewPet(newPet))
+    dispatch(addPet(newPet))
 
     navigate("/");
   };
