@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { produce } from "immer";
 import { db } from "../firebase/config";
-import { collection, getDocs, addDoc, updateDoc, arrayUnion, deleteDoc, doc } from "firebase/firestore";
-
-const robak = "https://sevenports.com/wp-content/uploads/aquarium-blog-post-9-1200x900.jpg"
+import { collection, getDoc, getDocs, addDoc, updateDoc, arrayUnion, arrayRemove, deleteDoc, doc } from "firebase/firestore";
 
 export const petsSlice = createSlice({
     name: "pets",
@@ -96,15 +94,26 @@ export const addSchedule = (array) => async (dispatch) => {
             schedules: arrayUnion(newSchedule)
         })
     } catch (error) {
+        console.log(error)
         dispatch(setError(error.message))
     }
 }
 
-export const deleteSchedule = (scheduleId) => async (dispatch) => {
+export const deleteSchedule = (array) => async (dispatch) => {
+    const petId = array[0]
+    const scheduleId = array[1]
+
     try {
-        const scheduleDoc = doc(db, "schedule", scheduleId)
-        await deleteDoc(scheduleDoc)
-        dispatch(deleteScheduleLocally(scheduleId))
+        const petRef = doc(db, "pets", petId)
+        const petDoc = await getDoc(petRef)
+        const petData = petDoc.data()
+        const updatedSchedules = petData.schedules.filter(schedule => schedule.id != scheduleId)
+        
+        await updateDoc(petRef, {
+            schedules: updatedSchedules
+        })
+
+        dispatch(deleteScheduleLocally(array))
     } catch (error) {
         dispatch(setError(error.message))
     }
