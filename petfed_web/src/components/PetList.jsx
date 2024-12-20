@@ -1,15 +1,19 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
-import { deletePet } from "../redux/Pets"
+import { fetchPets } from "../redux/Pets"
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
 export default function PetList() {
-    const { pets } = useSelector(state => state.pets)
+    const { pets, loading, error } = useSelector(state => state.pets)
     const dispatch = useDispatch()
 
-    const handleDelete = (petId => {
+    useEffect(() => {
+        dispatch(fetchPets())
+    }, [dispatch])
+
+    /*const handleDelete = (petId => {
         if(!confirm("Are you sure you want to delete this pet?\nYou will not be able to undo this action")) {
             return
         }
@@ -20,7 +24,10 @@ export default function PetList() {
     const bind = useLongPress((callback, petId) => 
         handleDelete(petId.context),
         {threshold: 1000,}
-    )
+    )*/
+
+    if (loading) return <p>Loading pets...</p>
+    if (error) return <p>Error: {error}...</p>
 
     return (
         <ul className={pets.length === 0 ? "flex" : "grid grid-cols-3 gap-4"}>
@@ -38,7 +45,7 @@ export default function PetList() {
                 return (
                     <div
                         key={ pet.id }
-                        {...bind(pet.id)}
+                        /*{...bind(pet.id)}*/
                     >
                         <li className="flex w-32 h-32 overflow-hidden rounded-full">
                             <img src={ pet.photo } className="object-cover h-full w-full"/>

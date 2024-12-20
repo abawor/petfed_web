@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { produce } from "immer";
+import { db } from "../firebase/config";
+import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 const poppy = "https://www.allthingsdogs.com/wp-content/uploads/2019/08/Dapple-Dachshund-Portrait.jpg"
 const robak = "https://sevenports.com/wp-content/uploads/aquarium-blog-post-9-1200x900.jpg"
@@ -7,72 +9,24 @@ const robak = "https://sevenports.com/wp-content/uploads/aquarium-blog-post-9-12
 export const petsSlice = createSlice({
     name: "pets",
     initialState: {
-        pets: [
-            {
-                id: '2',
-                photo: poppy,
-                name: 'Poppy',
-                schedules: [
-                    {
-                        id: 1,
-                        name: 'Daily',
-                        days: [
-                            'Monday',
-                            'Tuesday',
-                            'Wednesday',
-                            'Thursday',
-                            'Friday',
-                            'Saturday',
-                            'Sunday'
-                        ],
-                        time: '9:00',
-                        reminder: true
-                    },
-                    {
-                        id: 2,
-                        name: 'Daily',
-                        days: [
-                            'Monday',
-                            'Tuesday',
-                            'Wednesday',
-                            'Thursday',
-                            'Friday',
-                            'Saturday',
-                            'Sunday'
-                        ],
-                        time: '12:00',
-                        reminder: true
-                    }
-                ],
-                feedingLog: []
-            },
-            {
-                id: '3',
-                photo: robak,
-                name: 'Robak',
-                schedules: [
-                    {
-                        id: 3,
-                        name: 'Weekend',
-                        days: [
-                            'Saturday',
-                            'Sunday'
-                        ],
-                        time: '9:00',
-                        reminder: true
-                    }
-                ],
-                feedingLog: []
-            }
-        ]
+        pets: [],
+        loading: false,
+        error: null
     },
     reducers: {
-        addNewPet: (state, action) => {
-            state.pets.push(action.payload)
+        setPets: (state, action) => {
+            state.pets = action.payload
         },
-        deletePet: (state, action) => {
+        setLoading: (state, action) => {
+            state.loading = action.payload
+        },
+        setError: (state, action) => {
+            state.error = action.payload
+        },
+        deletePetLocally: (state, action) => {
             state.pets = state.pets.filter(pet => pet.id !== action.payload)
         },
+        /*
         addSchedule: (state, action) => {
             const petName = action.payload[0].value
             const newSchedule = action.payload[1]
@@ -82,8 +36,8 @@ export const petsSlice = createSlice({
                 pet.schedules.push(newSchedule)
             })
 
-        },
-        toggleScheduleNotification: (state, action) => {
+        },*/
+        toggleScheduleNotificationLocally: (state, action) => {
             const petId = action.payload[0]
             const scheduleId = action.payload[1]
 
@@ -94,7 +48,7 @@ export const petsSlice = createSlice({
                 schedule.reminder = !schedule.reminder
             })
         },
-        deleteSchedule: (state, action) => {
+        deleteScheduleLocally: (state, action) => {
             const petId = action.payload[0]
             const scheduleId = action.payload[1]
 
@@ -106,12 +60,23 @@ export const petsSlice = createSlice({
     }
 });
 
-export const {
-    addNewPet,
-    deletePet,
-    addSchedule,
-    toggleScheduleNotification,
-    deleteSchedule
-}  = petsSlice.actions;
+export const { setPets, setLoading, setError, deletePetLocally, toggleScheduleNotificationLocally, deleteScheduleLocally } = petsSlice.actions
+
+export const fetchPets = () => async (dispatch) => {
+    dispatch(setLoading(true))
+    try {
+        const petsCol = collection(db, "pets")
+        const petsSnapshot = await getDocs(petsCol)
+        const pets = petsSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+        }))
+        dispatch(setPets(pets))
+    } catch (error) {
+        dispatch(setError(error.message))
+    } finally {
+        dispatch(setLoading(false))
+    }
+}
 
 export default petsSlice.reducer;

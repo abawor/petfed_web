@@ -25,7 +25,7 @@ export const mealsSlice = createSlice({
     }
 });
 
-export const { setMeals, deleteMealLocally, setLoading, setError }  = mealsSlice.actions;
+export const { setMeals, setLoading, setError, deleteMealLocally } = mealsSlice.actions
 
 export const fetchMeals = () => async (dispatch) => {
     dispatch(setLoading(true))

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleScheduleNotification, deleteSchedule } from '../redux/Pets';
+/*import { toggleScheduleNotification, deleteSchedule } from '../redux/Pets';*/
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from 'react-icons/md';

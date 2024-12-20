@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { addSchedule } from '../redux/Pets'
+/*import { addSchedule } from '../redux/Pets'*/
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
