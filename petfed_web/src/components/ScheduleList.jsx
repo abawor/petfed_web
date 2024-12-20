@@ -24,8 +24,6 @@ export default function ScheduleList() {
       dispatch(deleteSchedule([petId, scheduleId]))
     };
     
-
-
     return (
         <ul className="grid grid-cols-3 gap-4">
             <Link

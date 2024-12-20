@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { produce } from "immer";
 import { db } from "../firebase/config";
-import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, arrayUnion, deleteDoc, doc } from "firebase/firestore";
 
 const robak = "https://sevenports.com/wp-content/uploads/aquarium-blog-post-9-1200x900.jpg"
 
@@ -86,10 +86,15 @@ export const deletePet = (petId) => async (dispatch) => {
     }
 }
 
-export const addSchedule = (schedule) => async (dispatch) => {
+export const addSchedule = (array) => async (dispatch) => {
+    const petId = array[0].value
+    const newSchedule = array[1]
+
     try {
-        const scheduleCol = collection(db, "pets", petId)
-        const docRef = await addDoc(scheduleCol, schedule)
+        const petDoc = doc(db, "pets", petId)
+        await updateDoc(petDoc, {
+            schedules: arrayUnion(newSchedule)
+        })
     } catch (error) {
         dispatch(setError(error.message))
     }

@@ -16,7 +16,7 @@ export default function AddNewMeal() {
     const petList = 
         pets.map((pet) => {
             return (
-                { value: pet.name, label: pet.name }
+                { value: pet.id, label: pet.name }
             )
         })
     
@@ -42,6 +42,7 @@ export default function AddNewMeal() {
         }
 
         const newSchedule = {
+            id: Date.now().toString(),
             name: name,
             days: selectedDays,
             time: time,
