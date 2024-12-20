@@ -1,6 +1,6 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-/*import { toggleScheduleNotification, deleteSchedule } from '../redux/Pets';*/
+import { fetchPets, deleteSchedule } from '../redux/Pets';
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from 'react-icons/md';
@@ -12,6 +12,10 @@ export default function ScheduleList() {
     const { pets } = useSelector(state => state.pets)
     const dispatch = useDispatch()
     
+    useEffect(() => {
+        dispatch(fetchPets())
+    }, [dispatch])
+
     const handleDelete = (petId, scheduleId) => {
       if(!confirm("Are you sure?\nYou will not be able to undo this action")) {
         return

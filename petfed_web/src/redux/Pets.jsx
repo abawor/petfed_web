@@ -25,17 +25,6 @@ export const petsSlice = createSlice({
         deletePetLocally: (state, action) => {
             state.pets = state.pets.filter(pet => pet.id !== action.payload)
         },
-        /*
-        addSchedule: (state, action) => {
-            const petName = action.payload[0].value
-            const newSchedule = action.payload[1]
-
-            return produce(state, draft => {
-                const pet = draft.pets.find(pet => pet.name === petName)
-                pet.schedules.push(newSchedule)
-            })
-
-        },*/
         toggleScheduleNotificationLocally: (state, action) => {
             const petId = action.payload[0]
             const scheduleId = action.payload[1]
@@ -92,6 +81,25 @@ export const deletePet = (petId) => async (dispatch) => {
         const petDoc = doc(db, "pets", petId)
         await deleteDoc(petDoc)
         dispatch(deletePetLocally(petId))
+    } catch (error) {
+        dispatch(setError(error.message))
+    }
+}
+
+export const addSchedule = (schedule) => async (dispatch) => {
+    try {
+        const scheduleCol = collection(db, "pets", petId)
+        const docRef = await addDoc(scheduleCol, schedule)
+    } catch (error) {
+        dispatch(setError(error.message))
+    }
+}
+
+export const deleteSchedule = (scheduleId) => async (dispatch) => {
+    try {
+        const scheduleDoc = doc(db, "schedule", scheduleId)
+        await deleteDoc(scheduleDoc)
+        dispatch(deleteScheduleLocally(scheduleId))
     } catch (error) {
         dispatch(setError(error.message))
     }
