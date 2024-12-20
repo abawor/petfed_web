@@ -59,7 +59,6 @@ export const deleteMeal = (mealId) => async (dispatch) => {
         await deleteDoc(mealDoc)
         dispatch(deleteMealLocally(mealId))
     } catch (error) {
-        console.log(error)
         dispatch(setError(error.message))
     }
 }

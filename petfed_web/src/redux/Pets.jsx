@@ -3,7 +3,6 @@ import { produce } from "immer";
 import { db } from "../firebase/config";
 import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 
-const poppy = "https://www.allthingsdogs.com/wp-content/uploads/2019/08/Dapple-Dachshund-Portrait.jpg"
 const robak = "https://sevenports.com/wp-content/uploads/aquarium-blog-post-9-1200x900.jpg"
 
 export const petsSlice = createSlice({
@@ -76,6 +75,16 @@ export const fetchPets = () => async (dispatch) => {
         dispatch(setError(error.message))
     } finally {
         dispatch(setLoading(false))
+    }
+}
+
+export const deletePet = (petId) => async (dispatch) => {
+    try {
+        const petDoc = doc(db, "pets", petId)
+        await deleteDoc(petDoc)
+        dispatch(deletePetLocally(petId))
+    } catch (error) {
+        dispatch(setError(error.message))
     }
 }
 
