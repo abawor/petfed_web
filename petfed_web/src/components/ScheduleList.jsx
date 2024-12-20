@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPets, deleteSchedule } from '../redux/Pets';
+import { fetchPets, toggleNotification, deleteSchedule } from '../redux/Pets';
 import { FaPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from 'react-icons/md';
@@ -56,7 +56,7 @@ export default function ScheduleList() {
                                     <Toggle
                                         className="float-right mr-1"
                                         checked={schedule.reminder}
-                                        onChange={() => dispatch(toggleScheduleNotification([pet.id, schedule.id]))}
+                                        onChange={() => dispatch(toggleNotification([pet.id, schedule.id]))}
                                     />
                                 </div>
                             </li>

@@ -23,7 +23,7 @@ export const petsSlice = createSlice({
         deletePetLocally: (state, action) => {
             state.pets = state.pets.filter(pet => pet.id !== action.payload)
         },
-        toggleScheduleNotificationLocally: (state, action) => {
+        toggleLocalNotification: (state, action) => {
             const petId = action.payload[0]
             const scheduleId = action.payload[1]
 
@@ -46,7 +46,7 @@ export const petsSlice = createSlice({
     }
 });
 
-export const { setPets, setLoading, setError, deletePetLocally, toggleScheduleNotificationLocally, deleteScheduleLocally } = petsSlice.actions
+export const { setPets, setLoading, setError, deletePetLocally, toggleLocalNotification, deleteScheduleLocally } = petsSlice.actions
 
 export const fetchPets = () => async (dispatch) => {
     dispatch(setLoading(true))
@@ -94,7 +94,31 @@ export const addSchedule = (array) => async (dispatch) => {
             schedules: arrayUnion(newSchedule)
         })
     } catch (error) {
-        console.log(error)
+        dispatch(setError(error.message))
+    }
+}
+
+export const toggleNotification = (array) => async (dispatch) => {
+    const petId = array[0]
+    const scheduleId = array[1]
+
+    try {
+        const petRef = doc(db, "pets", petId)
+        const petDoc = await getDoc(petRef)
+        const petData = petDoc.data()
+
+        const updatedSchedules = petData.schedules.map(schedule => 
+            schedule.id === scheduleId ?
+                { ...schedule, reminder: !schedule.reminder }
+                : schedule
+        )
+
+        await updateDoc(petRef, {
+            schedules: updatedSchedules
+        })
+        
+        dispatch(toggleLocalNotification(array))
+    } catch (error) {
         dispatch(setError(error.message))
     }
 }
