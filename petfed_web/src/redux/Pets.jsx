@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { produce } from "immer";
 import { db } from "../firebase/config";
-import { collection, getDoc, getDocs, addDoc, updateDoc, arrayUnion, arrayRemove, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDoc, getDocs, addDoc, updateDoc, arrayUnion, deleteDoc, doc } from "firebase/firestore";
 
 export const petsSlice = createSlice({
     name: "pets",
