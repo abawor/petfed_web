@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPets, toggleNotification, deleteSchedule } from '../redux/Pets';
 import { FaPlus } from "react-icons/fa6";

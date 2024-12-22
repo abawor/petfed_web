@@ -31,27 +31,23 @@ export default function PetList() {
 
     return (
         <ul className={pets.length === 0 ? "flex" : "grid grid-cols-3 gap-4"}>
-            <div key={ 1 }>
-                <li>
-                    <Link
-                        to="/add-new-pet"
-                        className="flex justify-center items-center h-32 w-32 py-3 bg-teal-100 text-teal-500 rounded-full border-solid border-4 border-teal-500"
-                    >
-                        <FaPlus size={75}/>
-                    </Link>
-                </li>
-            </div>
+            <li key={ 1 }>
+                <Link
+                    to="/add-new-pet"
+                    className="flex justify-center items-center h-32 w-32 py-3 bg-teal-100 text-teal-500 rounded-full border-solid border-4 border-teal-500"
+                >
+                    <FaPlus size={75}/>
+                </Link>
+            </li>
             {pets.map((pet) => {
                 return (
-                    <div
+                    <li
                         key={ pet.id }
                         {...bind(pet.id)}
-                    >
-                        <li className="flex w-32 h-32 overflow-hidden rounded-full">
-                            <img src={ pet.photo } className="object-cover h-full w-full"/>
-                        </li>
-                        <p>{pet.name}</p>
-                    </div>
+                        className="flex w-32 h-32 overflow-hidden rounded-full">
+                        <img src={ pet.photo } className="object-cover h-full w-full"/>
+                        {pet.name}
+                    </li>
                 )
             })}
         </ul>

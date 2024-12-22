@@ -33,7 +33,7 @@ export default function MealsList() {
             >
                 <FaPlus size={75}/>
             </Link>
-            {meals !== [] || meals !== undefined ? 
+            {meals !== undefined ? 
             meals.map((meal) => {
                 return (
                     <li key={ meal.id } className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500">

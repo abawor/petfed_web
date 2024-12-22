@@ -47,7 +47,7 @@ export const fetchMeals = () => async (dispatch) => {
 export const addMeal = (meal) => async (dispatch) => {
     try {
         const mealsCol = collection(db, "meals")
-        const docRef = await addDoc(mealsCol, meal)
+        await addDoc(mealsCol, meal)
     } catch (error) {
         dispatch(setError(error.message))
     }
