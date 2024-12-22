@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { fetchPets, deletePet } from "../redux/Pets"
 import { FaPlus } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import { useLongPress } from 'use-long-press';
 
 export default function PetList() {
@@ -33,7 +33,7 @@ export default function PetList() {
         <ul className={pets.length === 0 ? "flex" : "grid grid-cols-3 gap-4"}>
             <li key={ 1 }>
                 <Link
-                    to="/add-new-pet"
+                    href="/AddNewPet"
                     className="flex justify-center items-center h-32 w-32 py-3 bg-teal-100 text-teal-500 rounded-full border-solid border-4 border-teal-500"
                 >
                     <FaPlus size={75}/>
