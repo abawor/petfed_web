@@ -25,7 +25,7 @@ function NameEdit() {
                     value={name}
                     />
                     <TiTick
-                        size={60}
+                        size={30}
                         onClick={() => setEditName(false)}
                         className='absolute right-10'
                     />

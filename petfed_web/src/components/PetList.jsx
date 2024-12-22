@@ -34,20 +34,23 @@ export default function PetList() {
             <li key={ 1 }>
                 <Link
                     href="/AddNewPet"
-                    className="flex justify-center items-center h-32 w-32 py-3 bg-teal-100 text-teal-500 rounded-full border-solid border-4 border-teal-500"
+                    className="flex justify-center items-center h-32 w-32 py-3 bg-teal-100 text-teal-500 rounded-full border-solid border-2 border-teal-500"
                 >
-                    <FaPlus size={75}/>
+                    <FaPlus size={35}/>
                 </Link>
             </li>
             {pets.map((pet) => {
                 return (
-                    <li
+                    <div
                         key={ pet.id }
                         {...bind(pet.id)}
-                        className="flex w-32 h-32 overflow-hidden rounded-full">
-                        <img src={ pet.photo } className="object-cover h-full w-full"/>
-                        {pet.name}
-                    </li>
+                    >
+                        <li
+                            className="flex w-32 h-32 overflow-hidden rounded-full">
+                            <img src={ pet.photo } className="object-cover h-full w-full"/>
+                        </li>
+                        <p>{pet.name}</p>
+                    </div>
                 )
             })}
         </ul>
