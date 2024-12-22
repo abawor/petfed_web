@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { addSchedule } from '../redux/Pets'
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/router";
 import Select from 'react-select';
 
 export default function AddNewMeal() {
@@ -11,7 +11,7 @@ export default function AddNewMeal() {
     const [name, setName] = useState('');
     const [days, setDays] = useState('');
     const [time, setTime] = useState('');
-    const navigate = useNavigate();
+    const router = useRouter()
 
     const petList = 
         pets.map((pet) => {
@@ -51,7 +51,7 @@ export default function AddNewMeal() {
 
         dispatch(addSchedule([scheduledPet, newSchedule]));
         
-        navigate('/schedule');
+        router.push("/ScheduleScreen")
     };
 
     return (

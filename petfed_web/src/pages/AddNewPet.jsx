@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux"
 import { addPet } from "../redux/Pets"
 import { MdOutlineAddAPhoto } from 'react-icons/md';
@@ -9,7 +9,7 @@ export default function AddNewPet() {
   const dispatch = useDispatch()
   const [photo, setPhoto] = useState(PetIcon);
   const [name, setName] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter()
 
   const handleSave = () => {
     if (!name) {
@@ -26,7 +26,7 @@ export default function AddNewPet() {
 
     dispatch(addPet(newPet))
 
-    navigate("/");
+    router.push("/HomeScreen")
   };
 
   return (

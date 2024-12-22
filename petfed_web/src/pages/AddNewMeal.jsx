@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/router";
 import { useDispatch } from 'react-redux';
 import { addMeal } from '../redux/Meals'
 import Dropdown from 'react-dropdown';
@@ -7,7 +7,7 @@ import 'react-dropdown/style.css';
 
 export default function AddNewMeal() {
     const dispatch = useDispatch()
-    const navigate = useNavigate();
+    const router = useRouter()
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -30,7 +30,7 @@ export default function AddNewMeal() {
 
         dispatch(addMeal(newMeal))
 
-        navigate('/meals');
+        router.push("/MealsScreen")
     };
 
     return (
