@@ -63,5 +63,4 @@ export const deleteMeal = (mealId) => async (dispatch) => {
     }
 }
 
-
 export default mealsSlice.reducer;
