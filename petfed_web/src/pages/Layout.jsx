@@ -22,40 +22,40 @@ export default function Layout({ children }) {
         {/* Navigation Bar */}
         <nav className="flex justify-around p-4 bg-teal-400">
           <Link href="/HomeScreen">
-            <a
+            <div
               className={`${navActive.home ? "text-black" : "text-white"} text-lg font-bold`}
               onClick={() => setNavActive({ home: true, meals: false, schedule: false, settings: false })}
             >
-              <MdOutlinePets size={55} className="mx-auto stroke-0"/>
+              <MdOutlinePets size={30} className="mx-auto stroke-0"/>
               Pets
-            </a>
+            </div>
           </Link>
           <Link href="/MealsScreen">
-            <a
+            <div
               className={`${navActive.meals ? "text-black" : "text-white"} text-lg font-bold`}
               onClick={() => setNavActive({ home: false, meals: true, schedule: false, settings: false })}
             >
-              <IoFastFoodOutline size={55} className="mx-auto"/>
+              <IoFastFoodOutline size={30} className="mx-auto"/>
               Meals
-            </a>
+            </div>
           </Link>
           <Link href="/ScheduleScreen">
-            <a
+            <div
               className={`${navActive.schedule ? "text-black" : "text-white"} text-lg font-bold`}
               onClick={() => setNavActive({ home: false, meals: false, schedule: true, settings: false })}
             >
-              <MdSchedule size={55} className="mx-auto"/>
+              <MdSchedule size={30} className="mx-auto"/>
               Schedule
-            </a>
+            </div>
           </Link>
           <Link href="/SettingsScreen">
-            <a
+            <div
               className={`${navActive.settings ? "text-black" : "text-white"} text-lg font-bold`}
               onClick={() => setNavActive({ home: false, meals: false, schedule: false, settings: true })}
             >
-              <IoSettingsOutline size={55} className="mx-auto"/>
+              <IoSettingsOutline size={30} className="mx-auto"/>
               Settings
-            </a>
+            </div>
           </Link>
         </nav>
       </div>
