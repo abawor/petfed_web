@@ -6,7 +6,7 @@ import 'react-toggle/style.css';
 export default function SettingsScreen() {
     const savedNotifications = localStorage.getItem("globalNotifications")
     const [notifications, setNotificiations] = useState(savedNotifications ? savedNotifications === "true" : true)
-
+z
     useEffect(() => {
         localStorage.setItem("globalNotifications", notifications)
     }, [notifications])    

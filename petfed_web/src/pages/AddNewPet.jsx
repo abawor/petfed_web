@@ -7,7 +7,7 @@ import PetIcon from '../assets/android-chrome-192x192.png';
 
 export default function AddNewPet() {
   const dispatch = useDispatch()
-  const [photo, setPhoto] = useState(PetIcon);
+  const [photo, setPhoto] = useState(PetIcon.src);
   const [name, setName] = useState("");
   const router = useRouter()
 
@@ -37,7 +37,7 @@ export default function AddNewPet() {
 
       {/* Photo Upload */}
       <div className="relative mb-4 teal-400">
-        {photo === PetIcon ? (
+        {photo === PetIcon.src ? (
             <MdOutlineAddAPhoto size={150} />
           ) :
           (
