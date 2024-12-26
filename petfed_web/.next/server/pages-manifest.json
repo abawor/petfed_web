@@ -3,5 +3,10 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/HomeScreen": "pages/HomeScreen.js",
+  "/MealsScreen": "pages/MealsScreen.js",
+  "/ScheduleScreen": "pages/ScheduleScreen.js",
+  "/SettingsScreen": "pages/SettingsScreen.js",
+  "/AddNewSchedule": "pages/AddNewSchedule.js",
+  "/AddNewMeal": "pages/AddNewMeal.js",
   "/AddNewPet": "pages/AddNewPet.js"
 }

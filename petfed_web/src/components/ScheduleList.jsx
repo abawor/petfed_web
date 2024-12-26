@@ -1,9 +1,9 @@
+import { MdOutlineDeleteForever } from 'react-icons/md';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPets, toggleNotification, deleteSchedule } from '../redux/Pets';
 import { FaPlus } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-import { MdOutlineDeleteForever } from 'react-icons/md';
+import Link from "next/link";
 import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 
@@ -27,10 +27,10 @@ export default function ScheduleList() {
     return (
         <ul className="grid grid-cols-3 gap-4">
             <Link
-                to="/add-new-schedule"
-                className="aspect-square flex justify-center items-center text-teal-500 bg-teal-100 text-slate-500 rounded-lg border-solid border-4 border-teal-500"
+                href="/AddNewSchedule"
+                className="aspect-square flex justify-center items-center text-teal-500 bg-teal-100 text-slate-500 rounded-lg border-solid border-2 border-teal-500"
             >
-                <FaPlus size={75}/>
+                <FaPlus size={35}/>
             </Link>
 
             {pets.map((pet) => {
@@ -39,12 +39,12 @@ export default function ScheduleList() {
                         return (
                             <li
                                 key={ schedule.id }
-                                className="pl-1 text-start aspect-square rounded-lg border-solid border-4 border-slate-500"
+                                className="pl-1 text-start aspect-square rounded-lg border-solid border-2 border-slate-500"
                             >
                                 <div className="flex items-center justify-between">
                                     <p className="font-bold text-xl truncate">{pet.name}</p>
                                     <MdOutlineDeleteForever
-                                        size={50}
+                                        size={25}
                                         onClick={() => handleDelete(pet.id, schedule.id)}
                                     />
                                 </div>
